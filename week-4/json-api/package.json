@@ -1,0 +1,8 @@
+{
+  "name": "json-api",
+  "author": "Matthew Smith",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
