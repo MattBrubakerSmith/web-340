@@ -1,7 +1,16 @@
 <% include header %>
 <% include navbar %>
-<div class="container">
-    <h1 class="display-3"><%= title %></h1>
-    <% include footer %>
+<div role="main" class="container">
+    <h2 class="my-4"><%= title %></h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee</h5>
+            <hr>
+            <p class="card-text my-4">Name: <strong><%= employee.name %></strong></p>
+            <hr>
+            <a href="/list" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
 </div>
+<% include footer %>
 <% include scripts %>

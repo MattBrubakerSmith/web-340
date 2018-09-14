@@ -83,6 +83,23 @@ app.post("/process", function(req, res) {
     res.redirect("/list");
 });
 
+app.get("/view/:queryName", function(req, res) {
+    let qn = req.params.queryName;
+    Employee.find({ "name": qn }, function(error, emps) {
+        if(error) throw error;
+        console.log(emps);
+        if(emps.length > 0) {
+            res.render("view", {
+                title: "Employee Record",
+                employee: emps[0]
+            });
+        }
+        else {
+            res.redirect("/list");
+        }
+    });
+});
+
 // Mongo Connection 
 mongoose.connect(mongoDB, {
     useMongoClient: true
