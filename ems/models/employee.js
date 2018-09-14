@@ -2,10 +2,9 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var employeeSchema = new Schema({
-    firstName: String,
-    lastName: String
+    name: String
 });
 
-var Employee = mongoose.model("Employee", employeeSchema);
+var Employee = mongoose.model("ems", employeeSchema);
 
 module.exports = Employee;

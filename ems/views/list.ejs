@@ -2,8 +2,27 @@
 <% include navbar %>
 <!-- BEGIN EMPLOYEE LIST -->
 <div class="container">
-    <h1 class="display-3"><%= title %></h1>
-
-    <% include footer %>
+    <h2 class="display-3 my-4"><%= title %></h2>
+    <% if(employees.length) { %>
+        <a class="btn btn-success my-4" href="/new">Add New</a>
+        <table class="table table-hover border border-dark">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(function(emp) { %>
+                    <tr>
+                        <td class="border border-dark"><%= emp.name %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <h3 class="my-4">No Entries!</h3>
+        <a class="btn btn-success" href="/new">Add Employee</a>
+    <% } %>
 </div>
+<% include footer %>
 <% include scripts %>

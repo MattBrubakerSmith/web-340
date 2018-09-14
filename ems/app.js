@@ -45,8 +45,13 @@ app.get("/", function(req, res) {
 });
 
 app.get("/list", function(req, res) {
-    res.render("list", {
-        title: "Employee List"
+    Employee.find({}, function(error, emps) {
+        if(error) throw error;
+
+        res.render("list", {
+            title: "Employee List",
+            employees: emps
+        });
     });
 });
 
@@ -63,7 +68,18 @@ app.post("/process", function(req, res) {
         return;
     }
 
-    console.log(req.body.txtName);
+    let empName = req.body.txtName;
+    console.log(empName);
+
+    let emp = new Employee({
+        name: empName
+    });
+
+    emp.save(function(error) {
+        if(error) throw error;
+        console.log(empName + " saved successfully!");
+    });
+
     res.redirect("/list");
 });
 
