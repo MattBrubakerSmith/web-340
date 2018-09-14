@@ -2,6 +2,7 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
+var helmet = require("helmet");
 var mongoose = require("mongoose");
 var mongoDB = "mongodb://smaft:smaft1@ds145752.mlab.com:45752/ems";
 var Employee = require("./models/employee");
@@ -24,13 +25,15 @@ var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger("short"));
+app.use(helmet.xssFilter());
 
 app.use(express.static(__dirname));
 
 //Express Routing
 app.get("/", function(req, res) {
     res.render("index", {
-        title: "Home Page"
+        title: "Home Page",
+        message: "XSS Prevention Example"
     });
 });
 
@@ -39,12 +42,6 @@ app.get("/list", function(req, res) {
         title: "Employee List"
     });
 });
-
-// app.get("/employees/:id", function(req, res) {
-//     res.render("view", {
-//         title: "Employee Management System - View Employee"
-//     });
-// });
 
 app.get("/new", function(req, res) {
     res.render("new", {
